@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Multiple Choice Quiz</title>
+	<style>
+		/* custom CSS styles */
+		body {
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+		}
+
+		h1 {
+			text-align: center;
+		}
+
+		.container {
+			margin: 0 auto;
+			width: 500px;
+		}
+
+		.question {
+			margin-bottom: 20px;
+		}
+
+		.options label {
+			display: block;
+			margin-bottom: 10px;
+			font-weight: normal;
+		}
+
+		button {
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+		}
+
+		button:hover {
+			background-color: #3e8e41;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Multiple Choice Quiz</h1>
+		<form id="quiz-form">
+			<!-- question 1 -->
+			<div class="question">
+				<label>1. What is the capital city of France?</label>
+				<div class="options">
+					<label><input type="radio" name="q1" value="a">New York</label>
+					<label><input type="radio" name="q1" value="b">Tokyo</label>
+					<label><input type="radio" name="q1" value="c">Paris</label>
+					<label><input type="radio" name="q1" value="d">Berlin</label>
+				</div>
+			</div>
+
+			<!-- question 2 -->
+			<div class="question">
+				<label>2. Who is the CEO of Tesla?</label>
+				<div class="options">
+					<label><input type="radio" name="q2" value="a">Elon Musk</label>
+					<label><input type="radio" name="q2" value="b">Jeff Bezos</label>
+					<label><input type="radio" name="q2" value="c">Mark Zuckerberg</label>
+					<label><input type="radio" name="q2" value="d">Tim Cook</label>
+				</div>
+			</div>
+
+			<!-- question 3 -->
+			<div class="question">
+				<label>3. What is the largest planet in our solar system?</label>
+				<div class="options">
+					<label><input type="radio" name="q3" value="a">Mars</label>
+					<label><input type="radio" name="q3" value="b">Jupiter</label>
+					<label><input type="radio" name="q3" value="c">Venus</label>
+					<label><input type="radio" name="q3" value="d">Saturn</label>
+				</div>
+			</div>
+
+			<!-- question 4 -->
+			<div class="question">
+				<label>4. What is the tallest mammal in the world?</label>
+				<div class="options">
+					<label><input type="radio" name="q4" value="a">Lion</label>
+					<label><input type="radio" name="q4" value="b">Elephant</label>
+					<label><input type="radio" name="q4" value="c">Giraffe</label>
+					<label><input type="radio" name="q4" value="d">Hippopotamus</label>
+				</div>
+			</div>
+
+			<button type="submit">Submit Quiz</button>
+		</form>
+	</div>
+
+	<script>
+		// JavaScript code to validate and score the quiz
+		var quizForm = document.getElementById('quiz-form');
+		quizForm.addEventListener('submit', function(e) {
+			e.preventDefault();
+
+			var score = 0;
+
+			// get selected answers
+			var q1 = document.querySelector('input[name="q1"]:checked');
+			var q2 = document.querySelector('input[name="q2"]:checked');
+			var q3 = document.querySelector('input[name="q3"]:checked');
+			var q4 = document.querySelector('input[name="q4"]:checked');
+
+			// check if all questions are answered
+			if (q1 === null || q2 === null || q3 === null || q4 === null) {
+				alert("Please answer all questions!");
+				return;
+			}
+
+			// calculate the score
+			if (q1.value === 'c') { score++; }
+			if (q2.value === 'a') { score++; }
+			if (q3.value === 'b') { score++; }
+			if (q4.value === 'c') { score++; }
+
+			// display the result
+			alert("Your score is " + score + " out of 4");
+		});
+	</script>
+</body>
+</html>
