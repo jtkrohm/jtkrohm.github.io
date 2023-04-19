@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Multiple Choice Quiz</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Add any necessary CSS here -->
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		main {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 20px;
+		}
+		h1 {
+			font-size: 3rem;
+			margin: 50px;
+			text-align: center;
+		}
+		p {
+			font-size: 1.2rem;
+			margin: 20px;
+			max-width: 600px;
+			text-align: center;
+		}
+		#quiz-container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			background-color: #f5f5f5;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+		}
+		.question {
+			font-size: 1.2rem;
+			margin-bottom: 20px;
+		}
+		.answers {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		label {
+			margin: 10px;
+			padding: 10px;
+			background-color: #ffffff;
+			border-radius: 10px;
+			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+			cursor: pointer;
+			transition: background-color 0.2s ease;
+		}
+		label:hover {
+			background-color: #f0f0f0;
+		}
+		input[type=radio] {
+			display: none;
+		}
+		button {
+			background-color: #009dff;
+			border: none;
+			border-radius: 10px;
+			color: white;
+			cursor: pointer;
+			font-size: 1.2rem;
+			margin-top: 40px;
+			padding: 15px 30px;
+			transition: background-color 0.2s ease;
+		}
+		button:hover {
+			background-color: #0088cc;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<h1>Multiple Choice Quiz</h1>
+		<p>This is a multiple choice quiz. Choose the correct answer for each question and click the button to finish the quiz.</p>
+		<div id="quiz-container">
+			<!-- INSERT QUESTIONS AND ANSWERS HERE -->
+			<!-- QUESTIONS SHOULD BE WRAPPED IN A <div class="question"> TAG -->
+			<!-- ANSWERS SHOULD BE WRAPPED IN A <div class="answers"> TAG -->
+			<!-- EACH ANSWER SHOULD BE WRAPPED IN A <label> TAG -->
+			<!-- THE CORRECT ANSWER FOR EACH QUESTION SHOULD HAVE THE "correct" CLASS -->
+		</div>
+		<button id="submit-button">Submit Answers</button>
+	</main>
+	<script>
+		// Get the quiz container
+		var quizContainer = document.getElementById("quiz-container");
+		// Get all the answer labels
+		var answerLabels = quizContainer.querySelectorAll(".answers label");
+		// Get the submit button
+		var submitButton = document.getElementById("submit-button");
+		
+		// Function to check the quiz and show the results
+		function checkQuiz() {
+			// Keep track of the number of correct answers
+			var numCorrect = 0;
+			// Loop through each question
+			var questions = quizContainer.querySelectorAll(".question");
+			for (var i = 0; i < questions.length; i++) {
+				// Get the current question
+				var question = questions[i];
+				// Get the current answer labels
+				var answerLabels = question.querySelectorAll(".answers label");
+				// Keep track of whether the user answered correctly
+				var answeredCorrectly = false;
+				// Loop through each answer label
+				for (var j = 0; j < answerLabels.length; j++) {
+					// Get the current answer label
+					var answerLabel = answerLabels[j];
+					// Get the radio button inside the label
+					var radioButton = answerLabel.querySelector("input[type=radio]");
+					// Check if this answer is the correct one
+					if (answerLabel.classList.contains("correct") && radioButton.checked) {
+						// User answered correctly
+						answeredCorrectly = true;
+						numCorrect++;
+						break;
+					}
+				}
+				// Add a class to the question to show whether it was answered correctly
+				if (answeredCorrectly) {
+					question.classList.add("correct");
+				} else {
+					question.classList.add("incorrect");
+				}
+			}
+			// Show the results message
+			alert("You got " + numCorrect + " out of " + questions.length + " correct!");
+		}
+		
+		// Add a click event listener to the submit button
+		submitButton.addEventListener("click", checkQuiz);
+	</script>
+</body>
+</html>
